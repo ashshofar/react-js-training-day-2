@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import IconLabelTabs from './components/IconLabelTabs';
 
 import { hot } from 'react-hot-loader';
 
 class App extends Component {
+
+  state = {
+    'loading': false,
+    'users': []
+  }
+
+  fetchUser = () => {
+    this.setState({ loading: true }, () =>
+      api.get(`/?nat=us&results=12`).then(({ data }) => {
+        this.setState({ loading: false, users: data.results });
+      })
+    );
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="d-flex justify-content-center">
+        <IconLabelTabs/>
       </div>
     );
   }

@@ -16,13 +16,6 @@ const styles = {
 };
 
 class IconLabelTabs extends React.Component {
-    state = {
-        value: 0,
-    };
-
-    handleChange = (event, value) => {
-        this.setState({ value });
-    };
 
     render() {
         const { classes } = this.props;
@@ -30,16 +23,18 @@ class IconLabelTabs extends React.Component {
         return (
             <Paper square className={classes.root}>
                 <Tabs
-                value={this.state.value}
-                onChange={this.handleChange}
-                fullWidth
-                indicatorColor="secondary"
-                textColor="secondary"
+                    value={this.props.value}
+                    onChange={this.props.handleChange}
+                    fullWidth
+                    indicatorColor="secondary"
+                    textColor="secondary"
                 >
-                <Tab icon={<PhoneIcon />} label="PHONE BOOKS" />
-                <Tab icon={<FavoriteIcon />} label="FAVORITES" />
-                <Tab icon={<PersonPinIcon />} label="ADD CONTACT" />
+                    <Tab icon={<PhoneIcon />} label="PHONE BOOKS" />
+                    <Tab icon={<FavoriteIcon />} label="FAVORITES" />
+                    <Tab icon={<PersonPinIcon />} label="ADD CONTACT" />
                 </Tabs>
+
+                {this.props.children}
             </Paper>
         );
     }
